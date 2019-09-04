@@ -30,9 +30,17 @@ function buttonPrinter() {
 buttonPrinter();
 
 //
-
 newButton.click(function() {
-  console.log($(`input`).value);
+  event.preventDefault();
+  var userEntry = String(
+    $(`#userQuery`)
+      .val()
+      .trim()
+  );
+  topics.push(userEntry);
+  console.log(topics);
+  buttonPrinter();
+  console.log(userEntry);
 });
 // Event delegation for determining button presses with help from: https://davidwalsh.name/event-delegate
 document.getElementById("buttonPrint").addEventListener("click", function(e) {
