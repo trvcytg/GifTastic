@@ -3,7 +3,9 @@ var topics = [`nature`, `cats`, `dogs`, `funny`];
 var element;
 let buttonPrint = $(`#buttonPrint`);
 let gifPrint = $(`#gifPrint`);
-const queryURL = `https://api.giphy.com/v1/gifs/search?q=${element}&api_key=WiTmT2Gwb1pUPDNjwPHpnf6NZH2JIr4e&limit=10`;
+let newButton = $(`#newButton`);
+// const queryURL = `https://api.giphy.com/v1/gifs/search?q=${element}&api_key=WiTmT2Gwb1pUPDNjwPHpnf6NZH2JIr4e&limit=10`;
+// `https://api.giphy.com/v1/gifs/random&tag=${element}&api_key=WiTmT2Gwb1pUPDNjwPHpnf6NZH2JIr4e&limit=10`;
 
 // Function for Printing Initital Buttons on Page
 function buttonPrinter() {
@@ -21,20 +23,17 @@ function buttonPrinter() {
     element = element.charAt(0).toUpperCase() + element.substring(1);
     newButton.append(element);
     buttonPrint.append(newButton);
-
-    // calls Giphy API to console for coding purpose
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      console.log(response);
-    });
   });
 }
 
 // Calls function to print initial buttons to page on intial loading of page
 buttonPrinter();
 
+//
+
+newButton.click(function() {
+  console.log($(`input`).value);
+});
 // Event delegation for determining button presses with help from: https://davidwalsh.name/event-delegate
 document.getElementById("buttonPrint").addEventListener("click", function(e) {
   // e.target is the clicked element!
@@ -42,11 +41,24 @@ document.getElementById("buttonPrint").addEventListener("click", function(e) {
     // List item found!  Output the ID!
     console.log(e.target.id);
     let element = e.target.id;
-    $.ajax({
-        url: queryURL
+    for (let index = 0; index < 10; index++) {
+      const queryURL = `https://api.giphy.com/v1/gifs/random?api_key=WiTmT2Gwb1pUPDNjwPHpnf6NZH2JIr4e&tag=${element}`;
+      $.ajax({
+        url: queryURL,
         method: "GET"
-    }).then(function(response) {
+      }).then(function(response) {
         console.log(response);
-    })
+        var gifUrl = response.data.image_original_url;
+
+        var newGif = $(`<img>`);
+        newGif.attr("src", gifUrl);
+        newGif.attr(`alt`, element);
+        newGif.attr(`width`, `200px`);
+        newGif.attr(`height`, `auto`);
+
+        gifPrint.prepend(newGif);
+      });
+    }
+    gifPrint.prepend($(`<br>`));
   }
 });
