@@ -1,6 +1,8 @@
+// Declaring Initial Variables
 var topics = [`nature`, `cats`, `dogs`, `funny`];
 let buttonPrint = $(`#buttonPrint`);
 
+// Printing Initital Buttons on Page
 topics.forEach(function(element) {
   var newButton = $(`<button>`);
   newButton.attr(`type`, `button`);
