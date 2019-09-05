@@ -61,10 +61,14 @@ document.getElementById("buttonPrint").addEventListener("click", function(e) {
         var newGif = $(`<img>`);
         newGif.attr("src", gifUrl);
         newGif.attr(`alt`, element);
-        newGif.attr(`width`, `200px`);
+        newGif.attr(`class`, `justify-content-center`);
+        newGif.attr(`width`, `300px`);
         newGif.attr(`height`, `auto`);
-
+        gifPrint.prepend(`<br>`);
         gifPrint.prepend(newGif);
+        gifPrint.prepend(`<br>`);
+        gifPrint.prepend(response.data.title + ":");
+        gifPrint.prepend(`<br>`);
       });
     }
     gifPrint.prepend($(`<br>`));

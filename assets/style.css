@@ -15,6 +15,9 @@ form {
 }
 .container {
   background-color: #57b7f2;
-  margin-top: 2.5%;
+  margin: 2%;
   padding: 2%;
+}
+#gifPrint {
+  color: white;
 }
