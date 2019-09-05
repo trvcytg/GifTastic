@@ -74,3 +74,5 @@ document.getElementById("buttonPrint").addEventListener("click", function(e) {
     gifPrint.prepend($(`<br>`));
   }
 });
+// *NOTE* Decided to use the RandomGifAPI, which does not have a rating attribute -- was told
+//I was okay to pull a different piece of information in place of this missing data piece.
